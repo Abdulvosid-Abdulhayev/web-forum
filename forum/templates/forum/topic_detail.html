@@ -1,0 +1,21 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+    <h2>{{ topic.title }}</h2>
+    <p>{{ topic.content }}</p>
+    <p>Author: {{ topic.author }}</p>
+    
+    <h3>Comments</h3>
+    <ul>
+        {% for comment in comments %}
+            <li>{{ comment.content }} - by {{ comment.author }}</li>
+        {% endfor %}
+    </ul>
+
+    <h3>Add a comment</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit">Post Comment</button>
+    </form>
+{% endblock %}
